@@ -1,4 +1,4 @@
-package com.shopping.backend.model;
+package com.shopping.backend.data_model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -13,7 +13,6 @@ import javax.persistence.*;
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(ignoreUnknown = true, value = {"handler", "hibernate_lazy_initializer"})
 public class Product {
-
     @Id
     @GeneratedValue
     @Column(name = "product_id", unique = true)
@@ -28,6 +27,6 @@ public class Product {
     private String price;
     @Column(name = "discount")
     private Double discount;
-
-
+    @Column(name = "description")
+    private String description;
 }
