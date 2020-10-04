@@ -1,4 +1,4 @@
-package com.shopping.backend.data_model;
+package com.shopping.backend.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -47,10 +47,6 @@ public class User implements Serializable {
     @Column(name = "name")
     private String name;
 
-
-    @Basic(optional = false)
-    @Column(name = "status")
-    private int status;
 
     @JsonIgnore
     @Basic(optional = false)
@@ -101,14 +97,6 @@ public class User implements Serializable {
         this.name = firstName;
     }
 
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
 
     public Date getCreateDate() {
         return createDate;

@@ -13,7 +13,7 @@ public enum APIStatus {
     ERR_COMPANY_ID_EMPTY(403, "Company id is requied"),
     
     // Common status
-    OK(200, null),
+    OK(200, "Success"),
     ERR_INTERNAL_SERVER(500, "Internal Error"),
     SQL_ERROR(501, "SQL Error"),
     ERR_BAD_REQUEST(400, "Bad request"),    
