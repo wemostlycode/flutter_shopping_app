@@ -1,11 +1,9 @@
 package com.shopping.backend.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -14,7 +12,7 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.Date;
-
+@Data
 @Entity
 @Getter
 @Setter
@@ -24,9 +22,9 @@ import java.util.Date;
 @DynamicInsert
 @DynamicUpdate
 @Table(name = "users")
+@JsonIgnoreProperties(ignoreUnknown = true, value = {"handler", "hibernate_lazy_initializer"})
 @XmlRootElement
-public class User implements Serializable {
-
+public class User  {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -58,6 +56,9 @@ public class User implements Serializable {
     @Basic(optional = false)
     @Column(name = "salt")
     private String salt;
+
+    @Column(name = "device_id")
+    private String deviceId;
 
 
     public static long getSerialVersionUID() {
@@ -112,5 +113,13 @@ public class User implements Serializable {
 
     public void setSalt(String salt) {
         this.salt = salt;
+    }
+
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
     }
 }

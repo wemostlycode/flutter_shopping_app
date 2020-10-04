@@ -7,6 +7,7 @@ package com.shopping.backend.model.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.shopping.backend.util.APIStatus;
+import lombok.Data;
 
 import java.io.Serializable;
 
@@ -14,6 +15,7 @@ import java.io.Serializable;
  *
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Data
 public class APIResponse<T> implements Serializable {
 
     /**
