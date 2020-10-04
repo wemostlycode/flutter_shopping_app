@@ -12,27 +12,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * @author Trinhlbk
- */
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserRequestModel {
-    public String userId;
     public String name;
     public String email;
     public String password;
-    public String address;
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
 
     public String getName() {
         return name;
@@ -58,12 +47,5 @@ public class UserRequestModel {
         this.password = password;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
 
 }
