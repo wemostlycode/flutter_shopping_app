@@ -1,9 +1,9 @@
 package com.shopping.backend.service;
 
 import com.shopping.backend.model.User;
-import com.shopping.backend.model.request.UserLoginRequestModel;
-import com.shopping.backend.model.request.UserRegisterRequestModel;
-import com.shopping.backend.model.response.UserResponse;
+import com.shopping.backend.dto.request.UserLoginRequestDTO;
+import com.shopping.backend.dto.request.UserRegisterRequestDTO;
+import com.shopping.backend.dto.response.UserResponseDTO;
 
 public interface UserService {
 
@@ -11,7 +11,7 @@ public interface UserService {
 
     public User save(User users);
 
-    public UserResponse registerUser(UserRegisterRequestModel userRegisterRequestModel) throws Exception;
+    public UserResponseDTO registerUser(UserRegisterRequestDTO userRegisterRequestDTO) throws Exception;
 
-    UserResponse loginUser(UserLoginRequestModel loginRequestModel) throws Exception;
+    UserResponseDTO loginUser(UserLoginRequestDTO loginRequestModel) throws Exception;
 }

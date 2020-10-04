@@ -5,7 +5,7 @@
  * You shall not disclose such Confidential Information and shall use it only in accordance
  * with the terms of the license agreement you entered into with NIT-Software.
  */
-package com.shopping.backend.model.response;
+package com.shopping.backend.dto.response;
 
 import com.shopping.backend.constants.Constant;
 import com.shopping.backend.util.APIStatus;
