@@ -1,9 +1,9 @@
 package com.shopping.backend.service.impl;
 
 import com.shopping.backend.model.User;
-import com.shopping.backend.model.request.UserLoginRequestModel;
-import com.shopping.backend.model.request.UserRegisterRequestModel;
-import com.shopping.backend.model.response.UserResponse;
+import com.shopping.backend.dto.request.UserLoginRequestDTO;
+import com.shopping.backend.dto.request.UserRegisterRequestDTO;
+import com.shopping.backend.dto.response.UserResponseDTO;
 import com.shopping.backend.repository.UserRepository;
 import com.shopping.backend.service.UserService;
 import com.shopping.backend.util.APIStatus;
@@ -34,16 +34,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponse registerUser(UserRegisterRequestModel userRegisterRequestModel) throws Exception {
+    public UserResponseDTO registerUser(UserRegisterRequestDTO userRegisterRequestDTO) throws Exception {
         User existedUser = null;
         try {
             existedUser
-                    = getUserByEmail(userRegisterRequestModel.email);
+                    = getUserByEmail(userRegisterRequestDTO.email);
         } catch (Exception e) {
             e.printStackTrace();
         }
         if (existedUser == null) {
-            String email = userRegisterRequestModel.getEmail();
+            String email = userRegisterRequestDTO.getEmail();
             Pattern pattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
             Matcher matcher = pattern.matcher(email);
             if (!matcher.matches()) {
@@ -51,32 +51,32 @@ public class UserServiceImpl implements UserService {
             }
             User user = new User();
             user.setEmail(email);
-            user.setName(userRegisterRequestModel.getName());
+            user.setName(userRegisterRequestDTO.getName());
             user.setUserId(UniqueID.getUUID());
             user.setCreateDate(new Date());
             user.setSalt(UniqueID.getUUID());
-            user.setDeviceId(userRegisterRequestModel.deviceId);
+            user.setDeviceId(userRegisterRequestDTO.deviceId);
             try {
-                user.setPasswordHash(MD5Hash.MD5Encrypt(userRegisterRequestModel.password + user.getSalt()));
+                user.setPasswordHash(MD5Hash.MD5Encrypt(userRegisterRequestDTO.password + user.getSalt()));
             } catch (NoSuchAlgorithmException ex) {
                 throw new RuntimeException("Encrypt user password error", ex);
             }
 
             User user1 = save(user);
-            UserResponse userResponse = new UserResponse();
-            userResponse.setEmail(user1.getEmail());
-            userResponse.setName(user1.getName());
-            userResponse.setCreateDate(user1.getCreateDate());
-            userResponse.setUserId(user1.getUserId());
-            userResponse.setDeviceId(user1.getDeviceId());
-            return userResponse;
+            UserResponseDTO userResponseDTO = new UserResponseDTO();
+            userResponseDTO.setEmail(user1.getEmail());
+            userResponseDTO.setName(user1.getName());
+            userResponseDTO.setCreateDate(user1.getCreateDate());
+            userResponseDTO.setUserId(user1.getUserId());
+            userResponseDTO.setDeviceId(user1.getDeviceId());
+            return userResponseDTO;
         } else {
             throw new Exception(APIStatus.USER_ALREADY_EXIST.getDescription());
         }
     }
 
     @Override
-    public UserResponse loginUser(UserLoginRequestModel loginRequestModel) throws Exception {
+    public UserResponseDTO loginUser(UserLoginRequestDTO loginRequestModel) throws Exception {
         if ("".equals(loginRequestModel.email) || "".equals(loginRequestModel.password)) {
             throw new Exception(APIStatus.INVALID_PARAMETER.getDescription());
         } else {
@@ -92,13 +92,13 @@ public class UserServiceImpl implements UserService {
                 if (passwordHash.equals(user.getPasswordHash())) {
                     user.setDeviceId(loginRequestModel.deviceId);
                     user = save(user);
-                    UserResponse userResponse = new UserResponse();
-                    userResponse.setEmail(user.getEmail());
-                    userResponse.setName(user.getName());
-                    userResponse.setCreateDate(user.getCreateDate());
-                    userResponse.setUserId(user.getUserId());
-                    userResponse.setDeviceId(user.getDeviceId());
-                    return userResponse;
+                    UserResponseDTO userResponseDTO = new UserResponseDTO();
+                    userResponseDTO.setEmail(user.getEmail());
+                    userResponseDTO.setName(user.getName());
+                    userResponseDTO.setCreateDate(user.getCreateDate());
+                    userResponseDTO.setUserId(user.getUserId());
+                    userResponseDTO.setDeviceId(user.getDeviceId());
+                    return userResponseDTO;
                 } else {
                     // wrong password
                     throw new Exception(APIStatus.ERR_USER_NOT_VALID.getDescription());

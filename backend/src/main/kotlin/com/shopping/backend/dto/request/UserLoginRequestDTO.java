@@ -5,7 +5,7 @@
  * You shall not disclose such Confidential Information and shall use it only in accordance
  * with the terms of the license agreement you entered into with NIT-Software.
  */
-package com.shopping.backend.model.request;
+package com.shopping.backend.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -17,7 +17,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserLoginRequestModel {
+public class UserLoginRequestDTO {
     public String email;
     public String password;
     @JsonProperty("device_id")

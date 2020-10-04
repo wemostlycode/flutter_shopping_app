@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.shopping.backend.model.response;
+package com.shopping.backend.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,10 +12,7 @@ import lombok.Setter;
 
 import java.util.List;
 
-/**
- *
- * @author acer
- */
+
 @Getter
 @Setter
 @NoArgsConstructor

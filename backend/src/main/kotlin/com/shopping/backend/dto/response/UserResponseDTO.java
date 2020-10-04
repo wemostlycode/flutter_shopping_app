@@ -1,4 +1,4 @@
-package com.shopping.backend.model.response;
+package com.shopping.backend.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class UserResponse {
+public class UserResponseDTO {
     @JsonProperty("user_id")
     String userId;
     String email;

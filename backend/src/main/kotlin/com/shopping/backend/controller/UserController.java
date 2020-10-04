@@ -1,11 +1,11 @@
 package com.shopping.backend.controller;
 
 import com.shopping.backend.constants.ApiNameConstants;
-import com.shopping.backend.model.request.UserLoginRequestModel;
-import com.shopping.backend.model.request.UserRegisterRequestModel;
-import com.shopping.backend.model.response.APIResponse;
-import com.shopping.backend.model.response.ResponseUtil;
-import com.shopping.backend.model.response.UserResponse;
+import com.shopping.backend.dto.request.UserLoginRequestDTO;
+import com.shopping.backend.dto.request.UserRegisterRequestDTO;
+import com.shopping.backend.dto.response.APIResponse;
+import com.shopping.backend.dto.response.ResponseUtil;
+import com.shopping.backend.dto.response.UserResponseDTO;
 import com.shopping.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,15 +24,15 @@ public class UserController {
     UserService userService;
 
     @RequestMapping(path = ApiNameConstants.REGISTER, method = RequestMethod.POST)
-    ResponseEntity<APIResponse> registerUser(@RequestBody UserRegisterRequestModel userRegisterRequestModel) throws Exception {
-        UserResponse userResponse = userService.registerUser(userRegisterRequestModel);
-        return responseUtil.successResponse(userResponse);
+    ResponseEntity<APIResponse> registerUser(@RequestBody UserRegisterRequestDTO userRegisterRequestDTO) throws Exception {
+        UserResponseDTO userResponseDTO = userService.registerUser(userRegisterRequestDTO);
+        return responseUtil.successResponse(userResponseDTO);
     }
 
     @RequestMapping(path = ApiNameConstants.LOGIN, method = RequestMethod.POST)
-    ResponseEntity<APIResponse> loginUser(@RequestBody UserLoginRequestModel loginRequestModel) throws Exception {
-        UserResponse userResponse = userService.loginUser(loginRequestModel);
-        return responseUtil.successResponse(userResponse);
+    ResponseEntity<APIResponse> loginUser(@RequestBody UserLoginRequestDTO loginRequestModel) throws Exception {
+        UserResponseDTO userResponseDTO = userService.loginUser(loginRequestModel);
+        return responseUtil.successResponse(userResponseDTO);
     }
 
 }
