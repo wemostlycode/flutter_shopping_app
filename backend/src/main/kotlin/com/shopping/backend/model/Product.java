@@ -64,6 +64,10 @@ public class Product implements Serializable {
     @Column(name = "status")
     private int status;
 
+    @Basic(optional = false)
+    @Column(name = "type")
+    private int type;
+
     @Column(name = "description")
     private String description;
 

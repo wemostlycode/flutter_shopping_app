@@ -1,9 +1,9 @@
 package com.shopping.backend.service.impl;
 
-import com.shopping.backend.model.User;
 import com.shopping.backend.dto.request.UserLoginRequestDTO;
 import com.shopping.backend.dto.request.UserRegisterRequestDTO;
 import com.shopping.backend.dto.response.UserResponseDTO;
+import com.shopping.backend.model.User;
 import com.shopping.backend.repository.UserRepository;
 import com.shopping.backend.service.UserService;
 import com.shopping.backend.util.APIStatus;

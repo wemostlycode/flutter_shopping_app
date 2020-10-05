@@ -5,5 +5,7 @@ object ApiNameConstants {
     const val USERS = "$VERSION/users"
     const val REGISTER = "/register"
     const val LOGIN = "/login"
+    const val PRODUCTS = "$VERSION/products"
+
 
 }
